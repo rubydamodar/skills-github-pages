@@ -1,0 +1,11 @@
+# Minima theme for GitHub Pages
+theme: minima
+
+# Site information
+title: "Ruby Blog"
+author: "rubydamodar" 
+description: "A blog hosted on GitHub Pages to explore Ruby and programming concepts."
+
+# GitHub Pages settings
+baseurl: "/skills-github-pages"  
+url: "https://rubydamodar.github.io"  
