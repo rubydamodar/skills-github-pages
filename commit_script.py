@@ -13,7 +13,7 @@ repo = git.Repo(repo_path)
 file_path = os.path.join(repo_path, "log.txt")
 
 # Define start and end dates (past 1 year)
-start_date = datetime.datetime(2023, 3, 16)
+start_date = datetime.datetime(2024, 1, 1)
 end_date = datetime.datetime(2025, 3, 16)
 
 current_date = start_date
