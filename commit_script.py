@@ -1,6 +1,7 @@
 import os
 import git
-import time
+import datetime
+import random
 
 # Set the correct repo path
 repo_path = "C:/Users/abhis/Documents/GitHub/walmart sales forecasting/skills-github-pages"
@@ -11,22 +12,31 @@ repo = git.Repo(repo_path)
 # File to modify
 file_path = os.path.join(repo_path, "log.txt")
 
-# Number of commits
-total_commits = 100000
+# Define start and end dates (past 1 year)
+start_date = datetime.datetime(2024, 3, 16)
+end_date = datetime.datetime(2025, 3, 16)
 
-# Start commit process
-print(f"🔥 Generating {total_commits} commits...")
+current_date = start_date
 
-for i in range(total_commits):
-    with open(file_path, "a") as file:
-        file.write(f"Commit #{i+1}\n")
+print("🔥 Starting daily commits...")
 
-    repo.index.add([file_path])
-    commit_message = f"Automated Commit #{i+1}"
-    repo.index.commit(commit_message)
+while current_date <= end_date:
+    daily_commits = random.randint(500, 1000)  # Random commits per day (500-1000)
+    
+    for i in range(daily_commits):
+        with open(file_path, "a") as file:
+            file.write(f"Commit on {current_date.strftime('%Y-%m-%d')} #{i+1}\n")
 
-    if i % 5000 == 0:
-        print(f"✅ {i} commits done...")
+        repo.index.add([file_path])
+        commit_message = f"Automated Commit #{i+1} on {current_date.strftime('%Y-%m-%d')}"
+        repo.index.commit(commit_message, 
+                          author_date=current_date.strftime("%Y-%m-%d %H:%M:%S"),
+                          commit_date=current_date.strftime("%Y-%m-%d %H:%M:%S"))
+
+    print(f"✅ {daily_commits} commits done for {current_date.strftime('%Y-%m-%d')}")
+
+    # Move to the next day
+    current_date += datetime.timedelta(days=1)
 
 print("🚀 All commits completed! Pushing to GitHub...")
 
