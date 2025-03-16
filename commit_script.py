@@ -13,15 +13,15 @@ repo = git.Repo(repo_path)
 file_path = os.path.join(repo_path, "log.txt")
 
 # Define start and end dates (past 1 year)
-start_date = datetime.datetime(2024, 3, 16)
+start_date = datetime.datetime(2023, 3, 16)
 end_date = datetime.datetime(2025, 3, 16)
 
 current_date = start_date
 
-print("🔥 Starting daily commits...")
+print("🔥 Starting backfilling commits for past year...")
 
 while current_date <= end_date:
-    daily_commits = random.randint(500, 1000)  # Random commits per day (500-1000)
+    daily_commits = random.randint(1, 12)  # Random commits per day (1-12)
     
     for i in range(daily_commits):
         with open(file_path, "a") as file:
@@ -38,7 +38,7 @@ while current_date <= end_date:
     # Move to the next day
     current_date += datetime.timedelta(days=1)
 
-print("🚀 All commits completed! Pushing to GitHub...")
+print("🚀 All past-year commits completed! Pushing to GitHub...")
 
 # Push everything to GitHub
 repo.remote(name="origin").push()
